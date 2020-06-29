@@ -1,0 +1,519 @@
+//<МИКСИНЫ>===============================================================================================
+@mixin anim($time, $delay) {
+	-webkit-transition: all $time ease $delay;
+	-moz-transition: all $time ease $delay;
+	-ms-transition: all $time ease $delay;
+	-o-transition: all $time ease $delay;
+	transition: all $time ease $delay;
+}
+@mixin anim_cubic($time, $delay) {
+	-webkit-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+	-moz-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+	-ms-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+	-o-transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+	transition: all $time cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay;
+}
+@mixin rotate($deg) {
+	-moz-transform: rotate($deg);
+	-ms-transform: rotate($deg);
+	-webkit-transform: rotate($deg);
+	-o-transform: rotate($deg);
+	transform: rotate($deg);
+}
+@mixin scale($num) {
+	-moz-transform: scale($num);
+	-ms-transform: scale($num);
+	-webkit-transform: scale($num);
+	-o-transform: scale($num);
+	transform: scale($num);
+}
+@mixin skew($num) {
+	-webkit-transform: skewX($num);
+	-moz-transform: skewX($num);
+	-ms-transform: skewX($num);
+	-o-transform: skewX($num);
+	transform: skewX($num);
+}
+@mixin cnt($h) {
+	display: flex;
+	flex-direction: column;
+	height: $h;
+	text-align: center;
+	align-items: stretch;
+	justify-content: center;
+}
+@mixin tr($x, $y, $z) {
+	transform: translate3d($x, $y, $z);
+}
+@mixin flexbox() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	font-size: 0;
+}
+@mixin flexorder($val) {
+	-webkit-box-ordinal-group: $val;
+	-moz-box-ordinal-group: $val;
+	-ms-flex-order: $val;
+	-webkit-order: $val;
+	order: $val;
+}
+//</МИКСИНЫ>===============================================================================================
+
+//<Подключаем шрифты>======================================================================================
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=PT+Serif:400,700&display=swap");
+//</Подключаем шрифты>=====================================================================================
+
+//<Шрифт по умолчанию>=====================================================================================
+$fontfamily: "Montserrat";
+//</Шрифт по умолчанию>====================================================================================
+
+//<ПЕРЕМЕННЫЕ>=============================================================================================
+$minwidth: 320px;
+$mw: 1170;
+$md1: $mw + 12;
+$md2: 992.98;
+$md3: 767.98;
+$md4: 479.98;
+//</ПЕРЕМЕННЫЕ>============================================================================================
+
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>=============================================================================
+* {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+*,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,
+:active {
+	outline: none;
+}
+a:focus,
+a:active {
+	outline: none;
+}
+aside,
+nav,
+footer,
+header,
+section {
+	display: block;
+}
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	min-width: $minwidth;
+	position: relative;
+	width: 100%;
+	color: #000;
+}
+body {
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	font-family: $fontfamily;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	&.lock {
+		overflow: hidden;
+		@media (max-width: $md3+px) {
+			width: 100%;
+			position: fixed;
+			overflow: hidden;
+		}
+	}
+}
+input,
+button,
+textarea {
+	font-family: $fontfamily;
+}
+input::-ms-clear {
+	display: none;
+}
+button {
+	cursor: pointer;
+}
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+a,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+ul li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>============================================================================
+
+.pts {
+	font-family: "PT Serif";
+}
+.bluebg {
+	position: relative;
+	overflow: hidden;
+	&:after {
+		content: "";
+		@include rotate(18deg);
+		position: absolute;
+		width: 35%;
+		height: 130%;
+		left: -50px;
+		top: -95px;
+		background-image: linear-gradient(198deg, #007397 0%, rgba(0, 115, 115, 0) 100%);
+	}
+}
+
+//<ОСНОВНАЯ СЕТКА>=========================================================================================
+.container {
+	max-width: $mw + px;
+	margin: 0 auto;
+	width: 100%;
+	@media (max-width: $md1+px) {
+		max-width: 970px;
+	}
+	@media (max-width: $md2+px) {
+		max-width: 750px;
+	}
+	@media (max-width: $md3+px) {
+		max-width: none;
+		padding: 0 10px;
+	}
+}
+//</ОСНОВНАЯ СЕТКА>========================================================================================
+header{
+	position: relative;
+	z-index:50;
+}
+.header {
+	&__body {
+		@include flexbox();
+		height: 100px;
+		justify-content: space-between;
+		align-items: center;
+		@media (max-width:$md2+px){
+			height: 70px;
+		}
+		@media (max-width:$md3+px){
+			height: 50px;
+		}
+	}
+	&__column {
+	}
+	&__logo {
+		display: inline-block;
+		width: 172px;
+		position: relative;
+		z-index: 6;
+		img {
+			max-width: 100%;
+		}
+		@media (max-width:$md2+px){
+			width: 125px;
+		}
+	}
+}
+.menu-header {
+	&__icon {
+		display: none;	
+		width: 30px;
+		height: 18px;
+		cursor: pointer;
+		z-index: 5;
+		position: relative;
+		span {
+			@include anim(0.3s, 0s);
+			top: 8px;
+			left: 0;
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background-color: #000;
+			&:first-child {
+				top: 0;
+			}
+			&:last-child {
+				top: auto;
+				bottom: 0px;
+			}
+		}
+		&.active {
+			span {
+				@include scale(0);
+				&:first-child {
+					@include rotate(-45deg);
+					top: 8px;
+				}
+				&:last-child {
+					@include rotate(45deg);
+					bottom: 8px;
+				}
+			}
+
+		}
+		@media (max-width:$md3+px){
+			display: block;
+
+		}
+	}
+	&__menu {
+		@media (max-width:$md3+px){
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: -110%;
+			background-color: #fff;
+			z-index: 2;
+			padding: 50px 10px 20px 10px;
+			overflow: auto;
+			@include anim(0.5s, 0s);
+			&.active{
+				@include anim(0.5s, 0s);
+				left: 0;
+			}
+		}
+	}
+	&__list {
+		@include flexbox();
+		li {
+			margin-left: 35px;
+			@media (max-width:$md1+px){
+				margin-left: 25px;
+			}
+			@media (max-width:$md2+px){
+				margin-left: 15px;
+			}
+			@media (max-width:$md3+px){
+				margin: 0 0 10px 0;
+				&:last-child{
+					margin: 0;
+				}
+			}
+		}
+		@media (max-width:$md3+px){
+			display: block;
+		}
+	}
+	&__link {
+		color: #646667;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		display: block;
+		@include anim(0.3s, 0s);
+		&--circle {
+			padding-right: 42px;
+			background: url("../img/icons/header-circle.svg") right no-repeat;
+			@media (max-width:$md2+px){
+				background-size: 20px;
+				padding-right: 25px;
+			}
+			@media (max-width:$md3+px){
+				padding-left: 25px;
+				background-position: left;
+			}
+		}
+		span {
+			position: relative;
+			display: block;
+			line-height: 28px;
+			&:after {
+				content: "";
+				position: absolute;
+				left: 50%;
+				width: 0;
+				height: 1px;
+				background-color: #007397;
+				bottom: 0;
+				@include anim(0.3s, 0s);
+			}
+		}
+		&:hover {
+			color: #007397;
+			:after {
+				left: 0;
+				width: 100%;
+			}
+		}
+		@media (max-width:$md2+px){
+			font-size: 11px;
+		}
+		@media (max-width:$md3+px){
+			font-size: 14px;
+		}
+	}
+}
+
+.mainblock {
+	margin-bottom: 100px;
+	&__imageblock {
+		margin-bottom: 40px;
+		@media (max-width:$md2+px){
+			margin-bottom: 25px;
+
+		}
+	}
+	&_bottomblock{
+		@media (max-width:$md2+px){
+			margin-bottom: 80px;
+		}
+		
+	}
+}
+
+.imageblock {
+	position: relative;
+	height: 411px;
+	&__title {
+		@extend .pts;
+		position: absolute;
+		bottom: 80px;
+		right: 0;
+		text-shadow: 0 3px 1px rgba(0, 0, 0, 0.6);
+		color: #fff;
+		font-size: 32px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		line-height: 48px;
+		text-transform: uppercase;
+		z-index: 5;
+		max-width: 770px;
+		padding-right: 20px;
+		@media (max-width:$md1+px){
+			max-width: 670px;
+			font-size: 28px;
+			line-height: 44px;
+		}
+		@media (max-width:$md2+px){
+			max-width: 500px;
+			font-size: 20px;
+			line-height: 35px;
+			bottom: 50px;
+		}
+		@media (max-width:$md3+px){
+			position: relative;
+			bottom: 0;
+			text-align: center;
+			max-width: none;
+			padding: 20px;
+			font-size: 18px;
+			line-height: 30px;
+		}
+		
+	}
+	&__bg {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+	@media (max-width:$md2+px){
+		height: 300px;
+		
+	}
+	@media (max-width:$md3+px){
+		height: auto;
+		min-height: 250px;
+		@include flexbox();
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+.bottomblock {
+	text-align: center;
+	&__text {
+		color: #646667;
+		font-size: 20px;
+		font-weight: 300;
+		line-height: 36px;
+		max-width: 970px;
+		margin: 0 auto;
+		@media (max-width:$md2+px){
+			font-size: 16px;
+			line-height: 28px;
+		}
+	}
+	&__btn {
+		margin-top: 40px;
+		display: inline-block;
+		padding: 0px 30px;
+		height: 56px;
+		line-height: 56px;
+		overflow: hidden;
+		background-color: #007397;
+		color: #ffffff;
+		font-size: 16px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		position: relative;
+		text-align: center;
+		min-width: 270px;
+		@media (max-width:$md2+px){
+			margin-top: 25px;
+		}
+		&:after {
+			content: "";
+			width: 0;
+			position: absolute;
+			@include anim(0.8s, 0s);
+			height: 100%;
+			left: 50%;
+			top: 0;
+			background-color: #00526b;
+		}
+		span {
+			position: relative;
+			z-index: 2;
+		}
+		&:hover {
+			&:after {
+				left: 0;
+				width: 100%;
+			}
+		}
+		&.fw {
+			width: 100%;
+		}
+
+		@media (max-width: $md3+px) {
+			@include flexbox();
+			justify-content: center;
+			align-items: center;
+			line-height: 18px;
+			font-size: 14px;
+		}
+	}
+}
